@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import Home from './pages/Home';
+import ParentHome from './pages/ParentHome';
 import LoadingScreen from './pages/LoadingScreen';
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
@@ -104,8 +103,8 @@ export default function routes() {
 			{isAuthenticated && !isLoading && (
 				<Navigator>
 					<Screen
-						name='Home'
-						component={Home}
+						name='ParentHome'
+						component={ParentHome}
 						options={{ headerShown: false }}
 					></Screen>
 				</Navigator>

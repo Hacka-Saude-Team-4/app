@@ -3,13 +3,13 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 
-export default function index() {
+export default function index({ navigation }) {
 	const [cpf, setCPF] = useState('');
 	const [cep, setCEP] = useState('');
 
 	const navigateToAddChildrenScreen = () => {
 		// Navigate
-		console.warn('add children');
+		navigation.navigate('AddChildren');
 	};
 
 	return (

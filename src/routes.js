@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import ParentDetails from './pages/Register/ParentDetails';
 import SisvanConsent from './pages/Register/SisvanConsent';
 import ParentCPF from './pages/Register/ParentCPF';
+import AddChildren from './pages/AddChildren';
 import BarcodeReader from './pages/BarcodeReader';
 
 export default function routes() {
@@ -46,6 +47,11 @@ export default function routes() {
 				<Screen
 					name='ParentCPF'
 					component={ParentCPF}
+					options={{ headerShown: false }}
+				></Screen>
+				<Screen
+					name='AddChildren'
+					component={AddChildren}
 					options={{ headerShown: false }}
 				></Screen>
 				<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

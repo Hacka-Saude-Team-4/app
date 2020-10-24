@@ -5,6 +5,7 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import AddChildren from '../AddChildren';
 
@@ -21,8 +22,8 @@ const getTabBarIcon = (props) => {
 
 	if (route.key === 'account') {
 		return <MaterialCommunityIcons name='account' size={24} color='white' />;
-	} else if (route.key === 'settings') {
-		return <Feather name='settings' size={24} color='white' />;
+	} else if (route.key === 'children') {
+		return <FontAwesome name='child' size={24} color='white' />;
 	} else if (route.key === 'stats') {
 		return <SimpleLineIcons name='graph' size={24} color='white' />;
 	}
@@ -38,14 +39,14 @@ export default function index({ navigation }) {
 			key: 'stats',
 		},
 		{
-			key: 'settings',
+			key: 'children',
 		},
 	]);
 
 	const renderScene = SceneMap({
 		account: FirstRoute,
 		stats: SecondRoute,
-		settings: AddChildren,
+		children: AddChildren,
 	});
 
 	return (

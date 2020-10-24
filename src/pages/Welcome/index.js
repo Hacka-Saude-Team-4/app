@@ -9,7 +9,7 @@ export default function index({ navigation }) {
 	};
 
 	const navigateToRegisterScreen = () => {
-		navigation.navigate('Register');
+		navigation.navigate('ChooseUser');
 	};
 
 	return (

@@ -4,8 +4,14 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-export default function index() {
+export default function index({ navigation }) {
 	const [selectedUser, setSelectedUser] = useState('none');
+
+	const navigateToRegisterScreen = () => {
+		navigation.navigate('Register', {
+			userType: selectedUser,
+		});
+	};
 
 	return (
 		<View style={styles.container}>
@@ -51,7 +57,7 @@ export default function index() {
 
 				{selectedUser !== 'none' && (
 					<View style={styles.nextBtn}>
-						<TouchableOpacity>
+						<TouchableOpacity onPress={navigateToRegisterScreen}>
 							<View>
 								<Text>Avançar</Text>
 							</View>

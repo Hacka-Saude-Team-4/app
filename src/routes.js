@@ -6,6 +6,7 @@ import Welcome from './pages/Welcome';
 import Login from './pages/Login';
 import ChooseUser from './pages/ChooseUser';
 import Register from './pages/Register';
+import ParentDetails from './pages/Register/ParentDetails';
 import BarcodeReader from './pages/BarcodeReader';
 
 export default function routes() {
@@ -28,6 +29,11 @@ export default function routes() {
 				<Screen
 					name='Register'
 					component={Register}
+					options={{ headerShown: false }}
+				></Screen>
+				<Screen
+					name='ParentDetails'
+					component={ParentDetails}
 					options={{ headerShown: false }}
 				></Screen>
 				<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

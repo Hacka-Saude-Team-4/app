@@ -11,7 +11,7 @@ export default function index({ route, navigation }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const storeData = async (value) => {
+	const storeData = async (key, value) => {
 		try {
 			await AsyncStorage.setItem(key, value);
 		} catch (err) {
@@ -19,19 +19,8 @@ export default function index({ route, navigation }) {
 		}
 	};
 
-	// const readData = async (key) => {
-	// 	try {
-	// 		const value = await AsyncStorage.getItem(key);
-	// 		if (value !== null) {
-	// 			// console.warn(value);
-	// 		}
-	// 	} catch (e) {
-	// 		// error reading value
-	// 	}
-	// };
-
 	const navigateToParentDetailsScreen = () => {
-		// navigation.navigate('ParentDetails');
+		navigation.navigate('ParentDetails');
 	};
 
 	const registerUser = async () => {

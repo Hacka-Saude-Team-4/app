@@ -4,7 +4,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
-export default function index() {
+export default function index({ navigation }) {
+	const navigateToParentCPFScreen = () => {
+		navigation.navigate('ParentCPF');
+	};
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.permissionText}>
@@ -13,7 +17,10 @@ export default function index() {
 			</Text>
 
 			<View style={styles.requestPermission}>
-				<TouchableOpacity style={styles.yes}>
+				<TouchableOpacity
+					style={styles.yes}
+					onPress={navigateToParentCPFScreen}
+				>
 					<View>
 						<Text style={styles.text}>Sim</Text>
 					</View>

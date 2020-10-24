@@ -6,7 +6,7 @@ import styles from './styles';
 export default function index() {
 	return (
 		<View style={styles.container}>
-			<Text>Parent CPF</Text>
+			<Text>Parent CPF!</Text>
 		</View>
 	);
 }

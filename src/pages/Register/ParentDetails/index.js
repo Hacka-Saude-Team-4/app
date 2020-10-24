@@ -57,6 +57,10 @@ export default function index({ navigation }) {
 		}
 	};
 
+	const navigateToSisvanConsentScreen = () => {
+		navigation.navigate('SisvanConsent');
+	};
+
 	const sendParentDetails = async () => {
 		// Update parent information
 
@@ -81,12 +85,13 @@ export default function index({ navigation }) {
 					}
 				);
 
-				console.warn(res.data);
+				if (res.status === 200) {
+					// Redirect to SISVAN agreement page
+					navigateToSisvanConsentScreen();
+				}
 			} catch (err) {
 				console.warn('Error while trying to update parent information.', err);
 			}
-
-			// Redirect to SISVAN agreement page
 		}
 	};
 

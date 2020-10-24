@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import ChooseUser from './pages/ChooseUser';
 import Register from './pages/Register';
 import ParentDetails from './pages/Register/ParentDetails';
+import SisvanConsent from './pages/Register/SisvanConsent';
 import BarcodeReader from './pages/BarcodeReader';
 
 export default function routes() {
@@ -34,6 +35,11 @@ export default function routes() {
 				<Screen
 					name='ParentDetails'
 					component={ParentDetails}
+					options={{ headerShown: false }}
+				></Screen>
+				<Screen
+					name='SisvanConsent'
+					component={SisvanConsent}
 					options={{ headerShown: false }}
 				></Screen>
 				<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

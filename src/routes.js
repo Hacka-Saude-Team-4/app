@@ -12,7 +12,11 @@ export default function routes() {
 	return (
 		<NavigationContainer>
 			<Navigator>
-				<Screen name='Welcome' component={Welcome}></Screen>
+				<Screen
+					name='Welcome'
+					component={Welcome}
+					options={{ headerShown: false }}
+				></Screen>
 				<Screen name='Login' component={Login}></Screen>
 				<Screen name='BarcodeReader' component={BarcodeReader}></Screen>
 			</Navigator>

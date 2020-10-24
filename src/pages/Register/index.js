@@ -1,11 +1,34 @@
-import React from 'react';
-import { View, Text, Button } from 'react-native';
+import React, { useState } from 'react';
+import client from '../../config/config';
+import { View, Text } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
 export default function index({ route, navigation }) {
 	const { userType } = route.params;
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+
+	const registerUser = async () => {
+		if (email !== '' && password !== '') {
+			try {
+				const res = await client.post('/parent/register', {
+					email,
+					password,
+				});
+
+				if (res.status === 200) {
+					// Store JWT access token
+					// Navigate to Parent details
+				}
+			} catch (err) {
+				console.warn('Error: ' + err);
+			}
+		} else {
+			console.warn('Por favor, preencha seus dados antes de registrar.');
+		}
+	};
 
 	return (
 		<View style={styles.container}>
@@ -17,6 +40,8 @@ export default function index({ route, navigation }) {
 					textContentType='emailAddress'
 					placeholder='joao@gmail.com'
 					style={styles.textInput}
+					value={email}
+					onChangeText={(text) => setEmail(text)}
 				></TextInput>
 			</View>
 
@@ -28,10 +53,12 @@ export default function index({ route, navigation }) {
 					style={styles.textInput}
 					secureTextEntry={true}
 					textContentType='password'
+					value={password}
+					onChangeText={(text) => setPassword(text)}
 				></TextInput>
 			</View>
 
-			<TouchableOpacity style={styles.sendBtn}>
+			<TouchableOpacity style={styles.sendBtn} onPress={registerUser}>
 				<View>
 					<Text>Cadastrar-se</Text>
 				</View>

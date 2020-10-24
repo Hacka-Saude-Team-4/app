@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import BarcodeReader from './pages/BarcodeReader';
 
 export default function routes() {
@@ -18,6 +19,7 @@ export default function routes() {
 					options={{ headerShown: false }}
 				></Screen>
 				<Screen name='Login' component={Login}></Screen>
+				<Screen name='Register' component={Register}></Screen>
 				<Screen name='BarcodeReader' component={BarcodeReader}></Screen>
 			</Navigator>
 		</NavigationContainer>

@@ -7,7 +7,27 @@ export default StyleSheet.create({
 		justifyContent: 'center',
 	},
 
+	permissionText: {
+		width: 300,
+		textAlign: 'center',
+		fontSize: 15,
+	},
+
+	yes: {
+		marginTop: 15,
+		borderColor: 'black',
+		borderWidth: 1,
+		borderRadius: 20,
+		padding: 25,
+	},
+
 	text: {
-		color: 'red',
+		fontSize: 20,
+	},
+
+	requestPermission: {
+		flexDirection: 'row',
+		width: 200,
+		justifyContent: 'space-around',
 	},
 });

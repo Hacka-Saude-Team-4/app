@@ -1,12 +1,30 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
 
 export default function index() {
 	return (
 		<View style={styles.container}>
-			<Text>Here's Sisvan consent!</Text>
+			<Text style={styles.permissionText}>
+				Você aceita compartilhar os dados cadastrados e gerados na plataforma
+				com profissionais da saúde para pesquisas e ações futuras?
+			</Text>
+
+			<View style={styles.requestPermission}>
+				<TouchableOpacity style={styles.yes}>
+					<View>
+						<Text style={styles.text}>Sim</Text>
+					</View>
+				</TouchableOpacity>
+
+				<TouchableOpacity style={styles.yes}>
+					<View>
+						<Text style={styles.text}>Não</Text>
+					</View>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 }

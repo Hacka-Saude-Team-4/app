@@ -9,6 +9,10 @@ export default function index({ navigation }) {
 		navigation.navigate('ParentCPF');
 	};
 
+	const navigateToAddChildrenScreen = () => {
+		navigation.navigate('AddChildren');
+	};
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.permissionText}>
@@ -26,7 +30,10 @@ export default function index({ navigation }) {
 					</View>
 				</TouchableOpacity>
 
-				<TouchableOpacity style={styles.yes}>
+				<TouchableOpacity
+					style={styles.yes}
+					onPress={navigateToAddChildrenScreen}
+				>
 					<View>
 						<Text style={styles.text}>Não</Text>
 					</View>

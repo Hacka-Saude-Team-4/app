@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import client from '../../config/config';
 import { View, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 import styles from './styles';
@@ -9,6 +10,29 @@ export default function index({ route, navigation }) {
 	const { userType } = route.params;
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+
+	const storeData = async (value) => {
+		try {
+			await AsyncStorage.setItem(key, value);
+		} catch (err) {
+			console.warn('AsyncStorage Error: ' + err);
+		}
+	};
+
+	// const readData = async (key) => {
+	// 	try {
+	// 		const value = await AsyncStorage.getItem(key);
+	// 		if (value !== null) {
+	// 			// console.warn(value);
+	// 		}
+	// 	} catch (e) {
+	// 		// error reading value
+	// 	}
+	// };
+
+	const navigateToParentDetailsScreen = () => {
+		// navigation.navigate('ParentDetails');
+	};
 
 	const registerUser = async () => {
 		if (email !== '' && password !== '') {
@@ -20,7 +44,15 @@ export default function index({ route, navigation }) {
 
 				if (res.status === 200) {
 					// Store JWT access token
-					// Navigate to Parent details
+					if (res.data.accessToken) {
+						storeData('accessToken', res.data.accessToken);
+
+						// Navigate to Parent details
+						navigateToParentDetailsScreen();
+					} else {
+						console.warn(res.data);
+						throw Error('No access token. User not allowed.');
+					}
 				}
 			} catch (err) {
 				console.warn('Error: ' + err);

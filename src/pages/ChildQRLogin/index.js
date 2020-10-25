@@ -73,7 +73,7 @@ export default function index({ navigation }) {
 	};
 
 	const loginUser = async () => {
-		if (id !== '') {
+		if (childID !== '') {
 			try {
 				const res = await client.post('/child/login', {
 					id: childID,

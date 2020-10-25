@@ -7,7 +7,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-import MyChildren from '../MyChildren';
+import ChildRewards from '../ChildRewards';
 import Settings from '../Settings';
 
 const FirstRoute = () => (
@@ -21,7 +21,9 @@ const SecondRoute = () => (
 const getTabBarIcon = (props) => {
 	const { route } = props;
 
-	if (route.key === 'account') {
+	if (route.key === 'rewards') {
+		return <FontAwesome name='trophy' size={24} color='white' />;
+	} else if (route.key === 'account') {
 		return <MaterialCommunityIcons name='account' size={24} color='white' />;
 	} else if (route.key === 'stats') {
 		return <SimpleLineIcons name='graph' size={24} color='white' />;
@@ -35,6 +37,7 @@ const initialLayout = { width: Dimensions.get('window').width };
 export default function index({ navigation }) {
 	const [index, setIndex] = React.useState(0);
 	const [routes] = React.useState([
+		{ key: 'rewards' },
 		{ key: 'account' },
 		{
 			key: 'stats',
@@ -45,6 +48,7 @@ export default function index({ navigation }) {
 	]);
 
 	const renderScene = SceneMap({
+		rewards: ChildRewards,
 		account: FirstRoute,
 		stats: SecondRoute,
 		settings: Settings,

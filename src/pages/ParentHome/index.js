@@ -2,12 +2,11 @@ import React from 'react';
 import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
 // import styles from './styles';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import { Feather } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
-import AddChildren from '../AddChildren';
+import MyChildren from '../MyChildren';
 
 const FirstRoute = () => (
 	<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
@@ -46,7 +45,7 @@ export default function index({ navigation }) {
 	const renderScene = SceneMap({
 		account: FirstRoute,
 		stats: SecondRoute,
-		children: AddChildren,
+		children: MyChildren,
 	});
 
 	return (

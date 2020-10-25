@@ -13,7 +13,7 @@ import Register from './pages/Register';
 import ParentDetails from './pages/Register/ParentDetails';
 import SisvanConsent from './pages/Register/SisvanConsent';
 import ParentCPF from './pages/Register/ParentCPF';
-import AddChildren from './pages/AddChildren';
+import MyChildren from './pages/MyChildren';
 import BarcodeReader from './pages/BarcodeReader';
 import { useEffect } from 'react';
 
@@ -92,8 +92,8 @@ export default function routes() {
 						options={{ headerShown: false }}
 					></Screen>
 					<Screen
-						name='AddChildren'
-						component={AddChildren}
+						name='MyChildren'
+						component={MyChildren}
 						options={{ headerShown: false }}
 					></Screen>
 					<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

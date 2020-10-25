@@ -7,9 +7,9 @@ export default function index({ navigation }) {
 	const [cpf, setCPF] = useState('');
 	const [cep, setCEP] = useState('');
 
-	const navigateToAddChildrenScreen = () => {
+	const navigateToMyChildrenScreen = () => {
 		// Navigate
-		navigation.navigate('AddChildren');
+		navigation.navigate('MyChildren');
 	};
 
 	return (
@@ -40,10 +40,7 @@ export default function index({ navigation }) {
 				></TextInput>
 			</View>
 
-			<TouchableOpacity
-				style={styles.yes}
-				onPress={navigateToAddChildrenScreen}
-			>
+			<TouchableOpacity style={styles.yes} onPress={navigateToMyChildrenScreen}>
 				<View>
 					<Text style={styles.textTouchable}>Avançar</Text>
 				</View>

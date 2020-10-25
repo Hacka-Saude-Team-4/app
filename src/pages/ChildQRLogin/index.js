@@ -1,14 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import client from '../../config/config';
-import { View, Text } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-
 import styles from './styles';
+import Modal from 'react-native-modal';
+import { BarCodeScanner } from 'expo-barcode-scanner';
+import BarcodeMask from 'react-native-barcode-mask';
+import LoadingScreen from '../LoadingScreen';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function index({ navigation }) {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [isModalVisible, setModalVisible] = useState(true);
+	const [secondModalVisible, setSecondModalVisible] = useState(true);
+	const [hasPermission, setHasPermission] = useState(null);
+	const [scanned, setScanned] = useState(false);
+	const [childID, setChildID] = useState('');
+	const [childName, setChildName] = useState('');
+
+	useEffect(() => {
+		if (!hasPermission) {
+			(async () => {
+				const { status } = await BarCodeScanner.requestPermissionsAsync();
+				setHasPermission(status === 'granted');
+			})();
+		}
+
+		if (scanned) {
+			loginUser();
+		}
+	}, [childID, scanned]);
+
+	const handleBarCodeScanned = ({ type, data }) => {
+		setScanned(true);
+		setChildID(data);
+		setSecondModalVisible(true);
+	};
+
+	if (hasPermission === null) {
+		return <LoadingScreen />;
+	}
+	if (hasPermission === false) {
+		return <Text>No access to camera</Text>;
+	}
 
 	const storeData = async (key, value) => {
 		try {
@@ -22,21 +57,34 @@ export default function index({ navigation }) {
 		navigation.navigate('ParentHome');
 	};
 
+	const toggleModal = () => {
+		setModalVisible(!isModalVisible);
+	};
+
+	const cancelUser = () => {
+		// TODO: change to ChildHomeScreen
+		setScanned(false);
+		setSecondModalVisible(false);
+	};
+
+	const confirmUser = () => {
+		// TODO: change to ChildHomeScreen
+		setSecondModalVisible(false);
+		navigateToParentHomeScreen();
+	};
+
 	const loginUser = async () => {
-		if (email !== '' && password !== '') {
+		if (id !== '') {
 			try {
-				const res = await client.post('/user/login', {
-					email,
-					password,
+				const res = await client.post('/child/login', {
+					id: childID,
 				});
 
 				if (res.status === 200) {
 					// Store JWT access token
 					if (res.data.accessToken) {
 						storeData('accessToken', res.data.accessToken);
-
-						// Navigate to Parent details
-						navigateToParentHomeScreen();
+						setChildName(res.data.child.name);
 					} else {
 						console.warn(res.data);
 						throw Error('No access token. User not allowed.');
@@ -52,37 +100,85 @@ export default function index({ navigation }) {
 
 	return (
 		<View style={styles.container}>
-			<Text>CHILD QR LOGIN</Text>
-			{/* <View style={styles.inputContainer}>
-				<Text style={styles.inputTitle}>E-mail</Text>
-				<TextInput
-					autoCapitalize='none'
-					textContentType='emailAddress'
-					placeholder='joao@gmail.com'
-					style={styles.textInput}
-					value={email}
-					onChangeText={(text) => setEmail(text)}
-				></TextInput>
-			</View>
+			<LoadingScreen />
 
-			<View style={styles.inputContainer}>
-				<Text style={styles.inputTitle}>Senha</Text>
-				<TextInput
-					autoCapitalize='none'
-					placeholder='********'
-					style={styles.textInput}
-					secureTextEntry={true}
-					textContentType='password'
-					value={password}
-					onChangeText={(text) => setPassword(text)}
-				></TextInput>
-			</View> */}
+			<Modal
+				useNativeDriver={true}
+				isVisible={isModalVisible}
+				onBackdropPress={() => setModalVisible(false)}
+			>
+				<View style={styles.modal}>
+					<Text style={styles.msg}>Escaneie o código QR</Text>
+					<Image
+						style={styles.gif}
+						source={require('../../../assets/lottieQRScan.gif')}
+					/>
+					<Text style={styles.eduh}>
+						Peça que seu responsável te cadastre na plataforma e gere um código
+						QR para você :)
+					</Text>
 
-			<TouchableOpacity style={styles.sendBtn} onPress={loginUser}>
-				<View>
-					<Text>Cadastrar-se</Text>
+					<TouchableOpacity style={styles.okBtn} onPress={toggleModal}>
+						<View>
+							<Text style={styles.textOkBtn}>Ok</Text>
+						</View>
+					</TouchableOpacity>
 				</View>
-			</TouchableOpacity>
+			</Modal>
+
+			<BarCodeScanner
+				onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+				style={StyleSheet.absoluteFillObject}
+			>
+				{!scanned && (
+					<BarcodeMask
+						lineAnimationDuration={1000}
+						animatedLineColor={'whitesmoke'}
+						width={300}
+						height={300}
+					/>
+				)}
+
+				<Modal
+					useNativeDriver={true}
+					isVisible={scanned && secondModalVisible}
+					onBackdropPress={() => setSecondModalVisible(false)}
+				>
+					<View style={styles.modal}>
+						<View style={styles.msg3}>
+							<MaterialIcons name='account-circle' size={40} color='black' />
+							<Text style={styles.msg2}>Fazer login como {childName}</Text>
+						</View>
+
+						<Image
+							style={styles.gif2}
+							source={require('../../../assets/watermelonHi.gif')}
+						/>
+
+						<View style={styles.loginConfirmationBtns}>
+							<TouchableOpacity style={styles.decline} onPress={cancelUser}>
+								<View>
+									<MaterialIcons name='cancel' size={50} color='red' />
+
+									<Text style={styles.styleIcon}>Cancelar</Text>
+								</View>
+							</TouchableOpacity>
+
+							<TouchableOpacity style={styles.accept} onPress={confirmUser}>
+								<View>
+									<FontAwesome
+										style={styles.styleIcon}
+										name='check-circle'
+										size={50}
+										color='green'
+									/>
+									<Text>Confirmar</Text>
+								</View>
+							</TouchableOpacity>
+						</View>
+					</View>
+				</Modal>
+			</BarCodeScanner>
 		</View>
 	);
 }

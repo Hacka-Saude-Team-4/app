@@ -75,6 +75,8 @@ export default function index({ navigation }) {
 						gender,
 						relationship,
 						height,
+						heightCM,
+						heightM,
 						weight,
 						diseases,
 					},

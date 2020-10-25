@@ -70,7 +70,7 @@ export default function index() {
 		return time.years;
 	};
 
-	const Item = ({ name, birthdate, id }) => (
+	const Item = ({ name, birthdate, id, heightM, heightCM, weight }) => (
 		<View>
 			<View style={styles.item}>
 				<View style={styles.childInfo}>
@@ -78,6 +78,9 @@ export default function index() {
 					<Text style={styles.name}>
 						{Math.floor(calculateAge(birthdate))} anos
 					</Text>
+					<Text style={styles.name}>{weight} kg</Text>
+					<Text style={styles.name}>{heightM} m</Text>
+					<Text style={styles.name}>{heightCM} cm</Text>
 				</View>
 
 				<TouchableOpacity
@@ -91,7 +94,15 @@ export default function index() {
 	);
 
 	const renderItem = ({ item }) => (
-		<Item name={item.name} birthdate={item.birthdate} id={item.id} />
+		<Item
+			name={item.name}
+			birthdate={item.birthdate}
+			id={item.id}
+			height={item.height}
+			heightM={item.heightM}
+			heightCM={item.heightCM}
+			weight={item.weight}
+		/>
 	);
 
 	return (

@@ -10,4 +10,9 @@ export default StyleSheet.create({
 	text: {
 		color: 'red',
 	},
+
+	gif2: {
+		width: 100,
+		height: 100,
+	},
 });

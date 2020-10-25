@@ -14,6 +14,7 @@ import ParentDetails from './pages/Register/ParentDetails';
 import SisvanConsent from './pages/Register/SisvanConsent';
 import ParentCPF from './pages/Register/ParentCPF';
 import MyChildren from './pages/MyChildren';
+import AddChildren from './pages/AddChildren';
 import BarcodeReader from './pages/BarcodeReader';
 import { useEffect } from 'react';
 
@@ -29,7 +30,7 @@ export default function routes() {
 				return value;
 			}
 		} catch (e) {
-			console.warn('Error while reading AsyncStorage', err);
+			console.warn('Error while reading AsyncStorage', e);
 			return null;
 		}
 	};
@@ -105,6 +106,11 @@ export default function routes() {
 					<Screen
 						name='ParentHome'
 						component={ParentHome}
+						options={{ headerShown: false }}
+					></Screen>
+					<Screen
+						name='AddChildren'
+						component={AddChildren}
 						options={{ headerShown: false }}
 					></Screen>
 				</Navigator>

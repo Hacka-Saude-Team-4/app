@@ -9,6 +9,7 @@ import LoadingScreen from './pages/LoadingScreen';
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
 import ChooseUser from './pages/ChooseUser';
+import ChildQRLogin from './pages/ChildQRLogin';
 import Register from './pages/Register';
 import ParentDetails from './pages/Register/ParentDetails';
 import SisvanConsent from './pages/Register/SisvanConsent';
@@ -105,6 +106,11 @@ export default function routes() {
 					<Screen
 						name='AddChildren'
 						component={AddChildren}
+						options={{ headerShown: false }}
+					></Screen>
+					<Screen
+						name='ChildQRLogin'
+						component={ChildQRLogin}
 						options={{ headerShown: false }}
 					></Screen>
 					<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

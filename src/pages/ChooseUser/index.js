@@ -9,9 +9,15 @@ export default function index({ navigation, route }) {
 	const { screen } = route.params;
 
 	const navigateToNextScreen = () => {
-		navigation.navigate(screen, {
-			userType: selectedUser,
-		});
+		if (selectedUser === 'parent' || selectedUser === 'professional') {
+			navigation.navigate(screen, {
+				userType: selectedUser,
+			});
+		} else if (selectedUser === 'child') {
+			navigation.navigate('ChildQRLogin', {
+				userType: selectedUser,
+			});
+		}
 	};
 
 	return (

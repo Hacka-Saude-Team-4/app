@@ -46,7 +46,8 @@ export default function index() {
 					console.warn(res.data);
 				}
 			} catch (err) {
-				console.warn('Error while trying to get current user.', err, token);
+				// TODO: check this current user situation
+				// console.warn('Error while trying to get current user.', err, token);
 			}
 		})();
 	}, [isFocused]);

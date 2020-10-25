@@ -22,6 +22,18 @@ export default StyleSheet.create({
 		borderColor: 'black',
 		borderWidth: 1,
 		padding: 20,
+		flexDirection: 'row',
+		flex: 1,
+		justifyContent: 'space-between',
+	},
+
+	childInfo: {},
+
+	qr: {},
+
+	access: {
+		fontSize: 20,
+		paddingBottom: 30,
 	},
 
 	name: {
@@ -40,5 +52,11 @@ export default StyleSheet.create({
 	addChildrenBtn: {
 		position: 'relative',
 		top: 20,
+	},
+
+	eduh: {
+		marginTop: 20,
+		width: 200,
+		textAlign: 'center',
 	},
 });

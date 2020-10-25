@@ -7,6 +7,8 @@ import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DateTime } from 'luxon';
 import Modal from 'react-native-modal';
+import QRCode from 'react-native-qrcode-svg';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import styles from './styles';
 
@@ -70,16 +72,21 @@ export default function index() {
 
 	const Item = ({ name, birthdate, id }) => (
 		<View>
-			<TouchableOpacity
-				style={styles.item}
-				onPress={() => toggleModal(name, id)}
-			>
-				<Text style={styles.name}>{name}</Text>
-				<Text style={styles.name}>{id}</Text>
-				<Text style={styles.name}>
-					{Math.floor(calculateAge(birthdate))} anos
-				</Text>
-			</TouchableOpacity>
+			<View style={styles.item}>
+				<View style={styles.childInfo}>
+					<Text style={styles.name}>{name}</Text>
+					<Text style={styles.name}>
+						{Math.floor(calculateAge(birthdate))} anos
+					</Text>
+				</View>
+
+				<TouchableOpacity
+					style={styles.qr}
+					onPress={() => toggleModal(name, id)}
+				>
+					<MaterialCommunityIcons name='qrcode' size={35} color='black' />
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 
@@ -111,8 +118,12 @@ export default function index() {
 				onBackdropPress={() => setModalVisible(false)}
 			>
 				<View style={styles.modal}>
-					<Text>{selectedChild}</Text>
-					<Text>{selectedChildID}</Text>
+					<Text style={styles.access}>Conceder acesso a {selectedChild}</Text>
+					<QRCode value={selectedChildID.toString()} size={200} />
+					<Text style={styles.eduh}>
+						Seu filho deve escanear o QR Code para que possa acessar a
+						plataforma.
+					</Text>
 
 					<TouchableOpacity title='Hide modal' onPress={toggleModal} />
 				</View>

@@ -80,7 +80,7 @@ export default function index({ navigation }) {
 
 			<TouchableOpacity style={styles.sendBtn} onPress={loginUser}>
 				<View>
-					<Text>Cadastrar-se</Text>
+					<Text>Entrar</Text>
 				</View>
 			</TouchableOpacity>
 		</View>

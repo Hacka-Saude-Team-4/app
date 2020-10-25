@@ -42,26 +42,41 @@ export default function index() {
 		})();
 	}, [isFocused]);
 
+	const getUserName = async (requestedId) => {
+		try {
+			const res = await client.get('/user/name', {
+				id: parseInt(requestedId),
+			});
+
+			if (res.status === 200) {
+				return res.data.username;
+			}
+		} catch (err) {
+			console.warn('Error while trying to get child name.', err);
+			return null;
+		}
+	};
+
 	// TODO: add its own component-- nah, NO TIME BROTHA
-	const Item = ({ title, reward, cost, level }) => (
-		<View>
-			<View style={styles.item}>
-				<View style={styles.childInfo}>
-					<Text style={styles.name}>Desafio: {title}</Text>
-					<Text style={styles.name}>Recompensa: {reward}</Text>
-					<Text style={styles.name}>Custo: {cost}</Text>
-					<Text style={styles.name}>Nível para desbloquear: {level}</Text>
+	const Item = ({ title, coins, assignedToName }) => {
+		return (
+			<View>
+				<View style={styles.item}>
+					<View style={styles.childInfo}>
+						<Text style={styles.name}>Desafio: {title}</Text>
+						<Text style={styles.name}>Recompensa: {coins} moedas</Text>
+						<Text style={styles.name}>Para: {assignedToName}</Text>
+					</View>
 				</View>
 			</View>
-		</View>
-	);
+		);
+	};
 
 	const renderItem = ({ item }) => (
 		<Item
 			title={item.title}
-			reward={item.description}
-			cost={item.cost}
-			level={item.level}
+			coins={item.coins}
+			assignedToName={item.assignedToName}
 		/>
 	);
 

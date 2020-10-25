@@ -59,6 +59,7 @@ export default function index() {
 					title,
 					coins,
 					assignedTo: parseInt(selectedValueID),
+					assignedToName: selectedValue,
 				},
 				{
 					headers: {

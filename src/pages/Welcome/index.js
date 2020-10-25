@@ -12,15 +12,27 @@ export default function index({ navigation }) {
 		navigation.navigate('ChooseUser');
 	};
 
+	const navigateToChooseUser = (screen) => {
+		navigation.navigate('ChooseUser', {
+			screen,
+		});
+	};
+
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity onPress={navigateToLoginScreen} style={styles.btn}>
+			<TouchableOpacity
+				onPress={() => navigateToChooseUser('Login')}
+				style={styles.btn}
+			>
 				<View>
 					<Text>Login</Text>
 				</View>
 			</TouchableOpacity>
 
-			<TouchableOpacity onPress={navigateToRegisterScreen} style={styles.btn}>
+			<TouchableOpacity
+				onPress={() => navigateToChooseUser('Register')}
+				style={styles.btn}
+			>
 				<View>
 					<Text>Cadastro</Text>
 				</View>

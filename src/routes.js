@@ -18,6 +18,7 @@ import ParentCPF from './pages/Register/ParentCPF';
 import MyChildren from './pages/MyChildren';
 import AddChildren from './pages/AddChildren';
 import BarcodeReader from './pages/BarcodeReader';
+import AddChallenge from './pages/AddChallenge';
 import { useEffect } from 'react';
 
 export default function routes() {
@@ -117,6 +118,11 @@ export default function routes() {
 					<Screen
 						name='ChildHome'
 						component={ChildHome}
+						options={{ headerShown: false }}
+					></Screen>
+					<Screen
+						name='AddChallenge'
+						component={AddChallenge}
 						options={{ headerShown: false }}
 					></Screen>
 					<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

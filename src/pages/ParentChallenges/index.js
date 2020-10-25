@@ -9,12 +9,20 @@ import {
 import client from '../../config/config';
 import { readData } from '../../services/asyncStorage';
 import { useIsFocused } from '@react-navigation/native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-export default function index({ navigation }) {
+export default function index() {
 	const [childChallenges, setChildChallenges] = useState([]);
 	const isFocused = useIsFocused();
+
+	const navigation = useNavigation();
+
+	const navigateToAddChallengeScreen = () => {
+		navigation.navigate('AddChallenge');
+	};
 
 	useEffect(() => {
 		(async () => {
@@ -68,6 +76,15 @@ export default function index({ navigation }) {
 					keyExtractor={(item) => item.id}
 				/>
 			</SafeAreaView>
+
+			<TouchableOpacity
+				onPress={navigateToAddChallengeScreen}
+				style={styles.addChildrenBtn}
+			>
+				<View>
+					<MaterialIcons name='add-circle-outline' size={50} color='black' />
+				</View>
+			</TouchableOpacity>
 		</View>
 	);
 }

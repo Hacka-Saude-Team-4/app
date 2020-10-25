@@ -19,7 +19,7 @@ export default function index({ navigation }) {
 	useEffect(() => {
 		(async () => {
 			try {
-				const res = await client.get('/child/challenges', {
+				const res = await client.get('/parent/challenges', {
 					headers: {
 						Authorization: `Bearer ${await readData('accessToken')}`,
 					},

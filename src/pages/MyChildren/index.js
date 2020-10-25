@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DateTime } from 'luxon';
+import Modal from 'react-native-modal';
 
 import styles from './styles';
 
@@ -13,6 +14,15 @@ export default function index() {
 	const navigation = useNavigation();
 	const isFocused = useIsFocused();
 	const [children, setChildren] = useState([]);
+	const [isModalVisible, setModalVisible] = useState(false);
+	const [selectedChild, setSelectedChild] = useState('');
+	const [selectedChildID, setSelectedChildID] = useState('');
+
+	const toggleModal = (name, id) => {
+		setModalVisible(!isModalVisible);
+		setSelectedChild(name);
+		setSelectedChildID(id);
+	};
 
 	const readData = async (key) => {
 		try {
@@ -36,7 +46,6 @@ export default function index() {
 				});
 
 				if (res.status === 200) {
-					console.warn(res.data);
 					setChildren(res.data.children);
 				}
 			} catch (err) {
@@ -59,17 +68,23 @@ export default function index() {
 		return time.years;
 	};
 
-	const Item = ({ name, birthdate }) => (
-		<View style={styles.item}>
-			<Text style={styles.name}>{name}</Text>
-			<Text style={styles.name}>
-				{Math.floor(calculateAge(birthdate))} anos
-			</Text>
+	const Item = ({ name, birthdate, id }) => (
+		<View>
+			<TouchableOpacity
+				style={styles.item}
+				onPress={() => toggleModal(name, id)}
+			>
+				<Text style={styles.name}>{name}</Text>
+				<Text style={styles.name}>{id}</Text>
+				<Text style={styles.name}>
+					{Math.floor(calculateAge(birthdate))} anos
+				</Text>
+			</TouchableOpacity>
 		</View>
 	);
 
 	const renderItem = ({ item }) => (
-		<Item name={item.name} birthdate={item.birthdate} />
+		<Item name={item.name} birthdate={item.birthdate} id={item.id} />
 	);
 
 	return (
@@ -90,6 +105,18 @@ export default function index() {
 					<MaterialIcons name='add-circle-outline' size={50} color='black' />
 				</View>
 			</TouchableOpacity>
+			<Modal
+				useNativeDriver={true}
+				isVisible={isModalVisible}
+				onBackdropPress={() => setModalVisible(false)}
+			>
+				<View style={styles.modal}>
+					<Text>{selectedChild}</Text>
+					<Text>{selectedChildID}</Text>
+
+					<TouchableOpacity title='Hide modal' onPress={toggleModal} />
+				</View>
+			</Modal>
 		</View>
 	);
 }

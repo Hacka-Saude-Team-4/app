@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export default StyleSheet.create({
 	container: {
@@ -8,8 +8,9 @@ export default StyleSheet.create({
 	},
 
 	flatListArea: {
-		width: '100%',
-		height: 300,
+		width: Dimensions.get('window').width,
+		height: 400,
+		marginTop: 10,
 	},
 
 	text: {
@@ -17,15 +18,23 @@ export default StyleSheet.create({
 	},
 
 	item: {
-		backgroundColor: 'gray',
+		width: Dimensions.get('window').width,
+		borderColor: 'black',
+		borderWidth: 1,
 		padding: 20,
-		marginVertical: 8,
-		marginHorizontal: 16,
 	},
 
 	name: {
 		fontSize: 20,
-		color: 'white',
+		color: 'black',
+	},
+
+	modal: {
+		backgroundColor: 'white',
+		height: 400,
+		borderRadius: 30,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 
 	addChildrenBtn: {

@@ -5,8 +5,10 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import MyChildren from '../MyChildren';
+import Settings from '../Settings';
 
 const FirstRoute = () => (
 	<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
@@ -25,6 +27,8 @@ const getTabBarIcon = (props) => {
 		return <FontAwesome name='child' size={24} color='white' />;
 	} else if (route.key === 'stats') {
 		return <SimpleLineIcons name='graph' size={24} color='white' />;
+	} else if (route.key === 'settings') {
+		return <FontAwesome5 name='cog' size={24} color='white' />;
 	}
 };
 
@@ -33,19 +37,23 @@ const initialLayout = { width: Dimensions.get('window').width };
 export default function index({ navigation }) {
 	const [index, setIndex] = React.useState(0);
 	const [routes] = React.useState([
+		{
+			key: 'children',
+		},
 		{ key: 'account' },
 		{
 			key: 'stats',
 		},
 		{
-			key: 'children',
+			key: 'settings',
 		},
 	]);
 
 	const renderScene = SceneMap({
+		children: MyChildren,
 		account: FirstRoute,
 		stats: SecondRoute,
-		children: MyChildren,
+		settings: Settings,
 	});
 
 	return (

@@ -38,12 +38,12 @@ export default function routes() {
 	useEffect(() => {
 		(async () => {
 			const accessToken = await readData('accessToken');
-			if (accessToken !== null) {
-				setIsAuthenticated(true);
-				setIsLoading(false);
-			} else {
-				setIsLoading(false);
+			if (accessToken) {
+				if (accessToken.includes === 'ey') {
+					setIsAuthenticated(true);
+				}
 			}
+			setIsLoading(false);
 		})();
 	}, []);
 
@@ -95,6 +95,16 @@ export default function routes() {
 					<Screen
 						name='MyChildren'
 						component={MyChildren}
+						options={{ headerShown: false }}
+					></Screen>
+					<Screen
+						name='ParentHome'
+						component={ParentHome}
+						options={{ headerShown: false }}
+					></Screen>
+					<Screen
+						name='AddChildren'
+						component={AddChildren}
 						options={{ headerShown: false }}
 					></Screen>
 					<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

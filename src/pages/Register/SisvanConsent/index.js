@@ -10,7 +10,7 @@ export default function index({ navigation }) {
 	};
 
 	const navigateToMyChildrenScreen = () => {
-		navigation.navigate('MyChildren');
+		navigation.navigate('ParentHome');
 	};
 
 	return (

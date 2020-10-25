@@ -6,8 +6,11 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import { Foundation } from '@expo/vector-icons';
 
 import MyChildren from '../MyChildren';
+import ParentChallenges from '../ParentChallenges';
 import Settings from '../Settings';
 
 const FirstRoute = () => (
@@ -23,6 +26,8 @@ const getTabBarIcon = (props) => {
 
 	if (route.key === 'account') {
 		return <MaterialCommunityIcons name='account' size={24} color='white' />;
+	} else if (route.key === 'challenges') {
+		return <Foundation name='target-two' size={24} color='white' />;
 	} else if (route.key === 'children') {
 		return <FontAwesome name='child' size={24} color='white' />;
 	} else if (route.key === 'stats') {
@@ -40,6 +45,9 @@ export default function index({ navigation }) {
 		{
 			key: 'children',
 		},
+		{
+			key: 'challenges',
+		},
 		{ key: 'account' },
 		{
 			key: 'stats',
@@ -51,6 +59,7 @@ export default function index({ navigation }) {
 
 	const renderScene = SceneMap({
 		children: MyChildren,
+		challenges: ParentChallenges,
 		account: FirstRoute,
 		stats: SecondRoute,
 		settings: Settings,

@@ -53,8 +53,8 @@ export default function index({ navigation }) {
 		}
 	};
 
-	const navigateToParentHomeScreen = () => {
-		navigation.navigate('ParentHome');
+	const navigateToChildHomeScreen = () => {
+		navigation.navigate('ChildHome');
 	};
 
 	const toggleModal = () => {
@@ -62,7 +62,6 @@ export default function index({ navigation }) {
 	};
 
 	const cancelUser = () => {
-		// TODO: change to ChildHomeScreen
 		setScanned(false);
 		setSecondModalVisible(false);
 	};
@@ -70,7 +69,7 @@ export default function index({ navigation }) {
 	const confirmUser = () => {
 		// TODO: change to ChildHomeScreen
 		setSecondModalVisible(false);
-		navigateToParentHomeScreen();
+		navigateToChildHomeScreen();
 	};
 
 	const loginUser = async () => {

@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ParentHome from './pages/ParentHome';
+import ChildHome from './pages/ChildHome';
 import LoadingScreen from './pages/LoadingScreen';
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
@@ -111,6 +112,11 @@ export default function routes() {
 					<Screen
 						name='ChildQRLogin'
 						component={ChildQRLogin}
+						options={{ headerShown: false }}
+					></Screen>
+					<Screen
+						name='ChildHome'
+						component={ChildHome}
 						options={{ headerShown: false }}
 					></Screen>
 					<Screen name='BarcodeReader' component={BarcodeReader}></Screen>

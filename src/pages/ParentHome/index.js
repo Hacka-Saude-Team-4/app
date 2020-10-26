@@ -12,6 +12,7 @@ import { Foundation } from '@expo/vector-icons';
 import MyChildren from '../MyChildren';
 import ParentChallenges from '../ParentChallenges';
 import Settings from '../Settings';
+import ParentsRewards from '../ParentsRewards';
 
 const FirstRoute = () => (
 	<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
@@ -25,7 +26,7 @@ const getTabBarIcon = (props) => {
 	const { route } = props;
 
 	if (route.key === 'account') {
-		return <MaterialCommunityIcons name='account' size={24} color='white' />;
+		return <FontAwesome name='trophy' size={24} color='white' />;
 	} else if (route.key === 'challenges') {
 		return <Foundation name='target-two' size={24} color='white' />;
 	} else if (route.key === 'children') {
@@ -60,7 +61,7 @@ export default function index({ navigation }) {
 	const renderScene = SceneMap({
 		children: MyChildren,
 		challenges: ParentChallenges,
-		account: FirstRoute,
+		account: ParentsRewards,
 		stats: SecondRoute,
 		settings: Settings,
 	});
@@ -74,7 +75,7 @@ export default function index({ navigation }) {
 			renderTabBar={(props) => (
 				<TabBar
 					{...props}
-					indicatorStyle={{ backgroundColor: 'red' }}
+					indicatorStyle={{ backgroundColor: '#04A777' }}
 					renderIcon={(props) => getTabBarIcon(props)}
 					tabStyle={styles.bubble}
 					labelStyle={styles.noLabel}

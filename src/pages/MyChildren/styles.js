@@ -5,6 +5,7 @@ export default StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		backgroundColor: '#FFE598',
 	},
 
 	flatListArea: {
@@ -19,12 +20,36 @@ export default StyleSheet.create({
 
 	item: {
 		width: Dimensions.get('window').width,
-		borderColor: 'black',
-		borderWidth: 1,
+		borderColor: 'gray',
+		borderWidth: 3,
 		padding: 20,
+		// paddingTop: 40,
+		// paddingBottom: 40,
 		flexDirection: 'row',
 		flex: 1,
 		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginBottom: 10,
+		borderRadius: 20,
+		backgroundColor: '#dedede',
+		// borderTopEndRadius: 20,
+	},
+
+	name1: {
+		color: '#04A777',
+		fontSize: 20,
+	},
+
+	baby: {
+		// backgroundColor: 'red',
+		marginRight: 10,
+	},
+
+	childMore: {
+		flexDirection: 'row',
+		// backgroundColor: 'red',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 
 	childInfo: {},
@@ -49,6 +74,12 @@ export default StyleSheet.create({
 		alignItems: 'center',
 	},
 
+	family: {
+		color: 'black',
+		fontSize: 20,
+		fontWeight: 'bold',
+	},
+
 	addChildrenBtn: {
 		position: 'relative',
 		top: 20,
@@ -58,5 +89,15 @@ export default StyleSheet.create({
 		marginTop: 20,
 		width: 200,
 		textAlign: 'center',
+	},
+
+	coin: {
+		width: 200,
+		height: 200,
+	},
+
+	sa: {
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });

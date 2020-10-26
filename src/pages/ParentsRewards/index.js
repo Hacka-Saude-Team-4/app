@@ -123,7 +123,7 @@ export default function index() {
 					style={styles.coin}
 					source={require('../../../assets/goalFlag.png')}
 				/>
-				<Text style={styles.permissionText}>DESAFIOS</Text>
+				<Text style={styles.permissionText}>RECOMPENSAS</Text>
 			</View>
 
 			<View>
@@ -137,7 +137,7 @@ export default function index() {
 			</View>
 
 			<ActionButton
-				buttonColor='#04A777'
+				buttonColor='rgba(231,76,60,1)'
 				onPress={() => {
 					navigateToAddChallengeScreen();
 				}}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import client from '../../config/config';
-import { View, Text, FlatList, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, SafeAreaView, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import { DateTime } from 'luxon';
 import Modal from 'react-native-modal';
 import QRCode from 'react-native-qrcode-svg';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import ActionButton from 'react-native-action-button';
 
 import styles from './styles';
 
@@ -74,13 +75,23 @@ export default function index() {
 		<View>
 			<View style={styles.item}>
 				<View style={styles.childInfo}>
-					<Text style={styles.name}>{name}</Text>
-					<Text style={styles.name}>
-						{Math.floor(calculateAge(birthdate))} anos
-					</Text>
-					<Text style={styles.name}>{weight} kg</Text>
-					<Text style={styles.name}>{heightM} m</Text>
-					<Text style={styles.name}>{heightCM} cm</Text>
+					<View style={styles.childMore}>
+						<Image
+							style={styles.baby}
+							source={require('../../../assets/babyFace.png')}
+						/>
+						<View>
+							<Text style={styles.name1}>{name.toUpperCase()}</Text>
+							<Text style={styles.name}>
+								{Math.floor(calculateAge(birthdate))} anos
+							</Text>
+						</View>
+					</View>
+
+					{/* <Text style={styles.name}>{weight} kg</Text> */}
+					{/* <Text style={styles.name}> */}
+					{/* {heightM}m{heightCM}cm{' '} */}
+					{/* </Text> */}
 				</View>
 
 				<TouchableOpacity
@@ -107,7 +118,14 @@ export default function index() {
 
 	return (
 		<View style={styles.container}>
-			<Text>Minhas crianças</Text>
+			<View style={styles.sa}>
+				<Image
+					style={styles.coin}
+					source={require('../../../assets/family.png')}
+				/>
+				<Text style={styles.family}>Minha família</Text>
+			</View>
+
 			<SafeAreaView style={styles.flatListArea}>
 				<FlatList
 					data={children}
@@ -115,14 +133,12 @@ export default function index() {
 					keyExtractor={(item) => item.id}
 				/>
 			</SafeAreaView>
-			<TouchableOpacity
-				onPress={navigateToAddChildrenScreen}
-				style={styles.addChildrenBtn}
-			>
-				<View>
-					<MaterialIcons name='add-circle-outline' size={50} color='black' />
-				</View>
-			</TouchableOpacity>
+			<ActionButton
+				buttonColor='#04A777'
+				onPress={() => {
+					navigateToAddChildrenScreen();
+				}}
+			/>
 			<Modal
 				useNativeDriver={true}
 				isVisible={isModalVisible}

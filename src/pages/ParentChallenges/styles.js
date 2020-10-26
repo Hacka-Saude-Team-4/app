@@ -5,12 +5,15 @@ export default StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		backgroundColor: '#FFE598',
 	},
 
 	permissionText: {
 		width: 300,
 		textAlign: 'center',
-		fontSize: 15,
+		fontSize: 20,
+		fontWeight: 'bold',
+		color: '#04A777',
 	},
 
 	yes: {
@@ -33,8 +36,9 @@ export default StyleSheet.create({
 
 	flatListArea: {
 		width: Dimensions.get('window').width,
-		height: 400,
+		// height: Dimensions.get('window').height,
 		marginTop: 10,
+		height: '100%',
 	},
 
 	text: {
@@ -43,15 +47,26 @@ export default StyleSheet.create({
 
 	item: {
 		width: Dimensions.get('window').width,
-		borderColor: 'black',
-		borderWidth: 1,
+		borderColor: 'gray',
+		borderWidth: 3,
 		padding: 20,
+		// paddingTop: 40,
+		// paddingBottom: 40,
 		flexDirection: 'row',
 		flex: 1,
 		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginBottom: 10,
+		borderRadius: 20,
+		backgroundColor: '#dedede',
+		// borderTopEndRadius: 20,
 	},
 
-	childInfo: {},
+	childInfo: {
+		justifyContent: 'space-between',
+		flexDirection: 'row',
+		width: '100%',
+	},
 
 	qr: {},
 
@@ -61,7 +76,7 @@ export default StyleSheet.create({
 	},
 
 	name: {
-		fontSize: 20,
+		fontSize: 17,
 		color: 'black',
 	},
 
@@ -82,5 +97,70 @@ export default StyleSheet.create({
 		marginTop: 20,
 		width: 200,
 		textAlign: 'center',
+	},
+
+	coin: {
+		width: 40,
+		height: 40,
+	},
+
+	coinContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		width: 200,
+		justifyContent: 'flex-end',
+		// backgroundColor: 'red',
+	},
+
+	title: {
+		// fontWeight: 'bold',
+		fontSize: 17,
+		fontWeight: 'bold',
+	},
+
+	name1: {
+		width: 180,
+		fontSize: 20,
+		flexShrink: 1,
+	},
+
+	fragment: {
+		// paddingBottom: 20,
+		flexDirection: 'column',
+		paddingBottom: 10,
+	},
+
+	editOrDelete: {
+		flexDirection: 'row',
+		justifyContent: 'flex-end',
+		// backgroundColor: 'red',
+	},
+
+	edit: {
+		padding: 5,
+	},
+
+	rightSide: {
+		position: 'relative',
+		justifyContent: 'space-between',
+		// backgroundColor: 'red',
+		right: 15,
+		// marginRight: 20,
+	},
+
+	fab: {
+		position: 'absolute',
+		backgroundColor: 'red',
+		width: Dimensions.get('window').width,
+		// justifyContent: 'flex-end',
+		// alignItems: 'flex-end',
+		// marginRight: 20,
+	},
+
+	main: {
+		marginTop: 150,
+		// backgroundColor: 'red',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 });

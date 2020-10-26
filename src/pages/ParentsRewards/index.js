@@ -24,21 +24,21 @@ export default function index() {
 
 	const navigation = useNavigation();
 
-	const navigateToAddChallengeScreen = () => {
-		navigation.navigate('AddChallenge');
+	const navigateToAddRewardScreen = () => {
+		navigation.navigate('AddReward');
 	};
 
 	useEffect(() => {
 		(async () => {
 			try {
-				const res = await client.get('/parent/challenges', {
+				const res = await client.get('/parent/rewards', {
 					headers: {
 						Authorization: `Bearer ${await readData('accessToken')}`,
 					},
 				});
 
 				if (res.status === 200) {
-					setChildChallenges(res.data.challenges);
+					setChildChallenges(res.data.rewards);
 				}
 			} catch (err) {
 				console.warn('Error while trying to get children.', err);
@@ -69,13 +69,8 @@ export default function index() {
 					<View style={styles.childInfo}>
 						<View>
 							<View style={styles.fragment}>
-								<Text style={styles.title}>🎯 Desafio</Text>
+								<Text style={styles.title}>🥇 Recompensa</Text>
 								<Text style={styles.name1}>{title}</Text>
-							</View>
-
-							<View style={styles.fragment}>
-								<Text style={styles.title}>Desafiado</Text>
-								<Text style={styles.name1}>{assignedToName}</Text>
 							</View>
 						</View>
 
@@ -95,11 +90,11 @@ export default function index() {
 							</View>
 
 							<View style={styles.coinContainer}>
+								<Text>{coins}</Text>
 								<Image
 									style={styles.coin}
 									source={require('../../../assets/coin.png')}
 								/>
-								<Text>x {coins}</Text>
 							</View>
 						</View>
 					</View>
@@ -119,10 +114,7 @@ export default function index() {
 	return (
 		<View style={styles.container}>
 			<View style={styles.main}>
-				<Image
-					style={styles.coin}
-					source={require('../../../assets/goalFlag.png')}
-				/>
+				<Text style={styles.emoji}>🏆</Text>
 				<Text style={styles.permissionText}>RECOMPENSAS</Text>
 			</View>
 
@@ -137,9 +129,9 @@ export default function index() {
 			</View>
 
 			<ActionButton
-				buttonColor='rgba(231,76,60,1)'
+				buttonColor='#04A777'
 				onPress={() => {
-					navigateToAddChallengeScreen();
+					navigateToAddRewardScreen();
 				}}
 			/>
 		</View>

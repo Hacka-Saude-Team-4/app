@@ -5,7 +5,7 @@ export default StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#FFE598',
+		backgroundColor: '#735290',
 	},
 
 	permissionText: {
@@ -13,7 +13,7 @@ export default StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 20,
 		fontWeight: 'bold',
-		color: '#04A777',
+		color: 'white',
 	},
 
 	yes: {
@@ -22,6 +22,10 @@ export default StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 20,
 		padding: 25,
+	},
+
+	emoji: {
+		fontSize: 30,
 	},
 
 	text: {

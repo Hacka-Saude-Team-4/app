@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import BarcodeMask from 'react-native-barcode-mask';
+import Modal from 'react-native-modal';
 
 import styles from './styles';
 
@@ -34,15 +35,55 @@ export default function index() {
 				onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
 				style={StyleSheet.absoluteFillObject}
 			>
-				<BarcodeMask
-					lineAnimationDuration={1000}
-					animatedLineColor={'whitesmoke'}
-				/>
-			</BarCodeScanner>
+				{!scanned && (
+					<BarcodeMask
+						lineAnimationDuration={1000}
+						animatedLineColor={'whitesmoke'}
+						width={300}
+						height={300}
+					/>
+				)}
 
-			{scanned && (
-				<Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />
-			)}
+				<Modal
+					useNativeDriver={true}
+					isVisible={scanned && secondModalVisible}
+					onBackdropPress={() => setSecondModalVisible(false)}
+				>
+					<View style={styles.modal}>
+						<View style={styles.msg3}>
+							<MaterialIcons name='account-circle' size={40} color='black' />
+							<Text style={styles.msg2}>Fazer login como {childName}</Text>
+						</View>
+
+						<Image
+							style={styles.gif2}
+							source={require('../../../assets/watermelonHi.gif')}
+						/>
+
+						<View style={styles.loginConfirmationBtns}>
+							<TouchableOpacity style={styles.decline} onPress={cancelUser}>
+								<View>
+									<MaterialIcons name='cancel' size={50} color='red' />
+
+									<Text style={styles.styleIcon}>Cancelar</Text>
+								</View>
+							</TouchableOpacity>
+
+							<TouchableOpacity style={styles.accept} onPress={confirmUser}>
+								<View>
+									<FontAwesome
+										style={styles.styleIcon}
+										name='check-circle'
+										size={50}
+										color='green'
+									/>
+									<Text>Confirmar</Text>
+								</View>
+							</TouchableOpacity>
+						</View>
+					</View>
+				</Modal>
+			</BarCodeScanner>
 		</View>
 	);
 }

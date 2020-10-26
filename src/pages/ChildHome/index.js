@@ -9,9 +9,10 @@ import { FontAwesome5 } from '@expo/vector-icons';
 
 import ChildRewards from '../ChildRewards';
 import Settings from '../Settings';
+import BarcodeScanner from '../BarcodeReader';
 
 const FirstRoute = () => (
-	<View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+	<View style={[styles.scene, { backgroundColor: '#ff4081' }]}></View>
 );
 
 const SecondRoute = () => (
@@ -26,9 +27,13 @@ const getTabBarIcon = (props) => {
 	} else if (route.key === 'account') {
 		return <MaterialCommunityIcons name='account' size={24} color='white' />;
 	} else if (route.key === 'stats') {
-		return <SimpleLineIcons name='graph' size={24} color='white' />;
+		return (
+			<MaterialCommunityIcons name='qrcode-scan' size={24} color='white' />
+		);
 	} else if (route.key === 'settings') {
 		return <FontAwesome5 name='cog' size={24} color='white' />;
+	} else if (route.key === 'diet') {
+		return <MaterialCommunityIcons name='food-apple' size={24} color='white' />;
 	}
 };
 
@@ -37,10 +42,13 @@ const initialLayout = { width: Dimensions.get('window').width };
 export default function index({ navigation }) {
 	const [index, setIndex] = React.useState(0);
 	const [routes] = React.useState([
-		{ key: 'rewards' },
 		{ key: 'account' },
+		{ key: 'rewards' },
 		{
 			key: 'stats',
+		},
+		{
+			key: 'diet',
 		},
 		{
 			key: 'settings',
@@ -48,9 +56,10 @@ export default function index({ navigation }) {
 	]);
 
 	const renderScene = SceneMap({
-		rewards: ChildRewards,
 		account: FirstRoute,
-		stats: SecondRoute,
+		rewards: ChildRewards,
+		stats: BarcodeScanner,
+		diet: FirstRoute,
 		settings: Settings,
 	});
 
@@ -63,7 +72,7 @@ export default function index({ navigation }) {
 			renderTabBar={(props) => (
 				<TabBar
 					{...props}
-					indicatorStyle={{ backgroundColor: 'red' }}
+					indicatorStyle={{ backgroundColor: '#04A777' }}
 					renderIcon={(props) => getTabBarIcon(props)}
 					tabStyle={styles.bubble}
 					labelStyle={styles.noLabel}
